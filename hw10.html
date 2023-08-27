@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>hw10.knit</title>
+
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<!DOCTYPE html>
+<head>
+<!-- Favicon for various operating systems -->
+<link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+<!-- <link rel="manifest" href="./favicon/site.webmanifest"> -->
+<link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#603cba">
+<link rel="shortcut icon" href="./favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#603cba">
+<meta name="msapplication-config" content="./favicon/browserconfig.xml">
+<meta name="theme-color" content="#382121">
+</head>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">BIOL678</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="software.html">Getting started</a>
+</li>
+<li>
+  <a href="content.html">Course content</a>
+</li>
+<li>
+  <a href="survival.html">Survival guide</a>
+</li>
+<li>
+  <a href="resources.html">Additional resources</a>
+</li>
+<li>
+  <a href="contact.html">Contact</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://danstich.github.io/worst-r/">worst-r</a>
+</li>
+<li>
+  <a href="https://github.com/danStich">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<style>
+pre code, pre, code {
+  white-space: pre !important;
+  overflow-x: scroll !important;
+  word-break: keep-all !important;
+  word-wrap: initial !important;
+}
+
+.column {
+    float: left;
+    padding: 15px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.content {
+    width: 75%;
+}
+
+</style>
+<div id="generalized-linear-mixed-models" class="section level1">
+<h1>Generalized linear mixed models</h1>
+<p><img src="images/horses.jpg" alt=""></p>
+<h2 id="multi">
+Introduction
+</h2>
+<p>This week we extended the analytical framework that we have been
+working with to include both fixed and random effects. We have discussed
+why we might want to use it and how to interpret the results of these
+tools. The purpose of this lab is to get you comfortable using GLMM with
+real data.</p>
+<p>By the end of this lab, you should 1) understand why we use mixed
+effects models, 2) be comfortable specifying general linear mixed models
+in R and applying the tool to analyze data from start to finish, and 3)
+be able to diagnose and interpret the results of these models.</p>
+<div id="exercises" class="section level2">
+<h2>Exercises</h2>
+<div id="linear-mixed-models-lmm--a-special-case-of-glmm"
+class="section level3">
+<h3>Linear mixed models (LMM- a special case of GLMM)</h3>
+<p>We have looked at the GLMM initially this week because of it’s
+utility for handling the combination of fixed and random effects for the
+types of data that we commonly encounter in biology and ecology. But, as
+a special case of the GLMM, we could look at using a Gaussian (normal)
+error distribution or any suite of transformed distributions for our
+models, too! The advantage of doing this is that the models tend to be
+fit a little more easily (i.e. reliably) under the arguably unstable
+engines and ever-changing optimization algorithms for this model class.
+This special case of the GLMM goes by a variety of names depending on
+uses. For example, we might refer to them as ‘repeated measures’ ANOVA,
+‘nested’ or ‘factorial’ ANOVA, or ‘linear mixed models’ (LMM).</p>
+<p>You’ll want the <code>tidyverse</code> loaded as always. If you plan
+to use restricted maximum likelihood estimation, you’ll need to load
+<code>lme4</code>, <code>merTools</code>, <code>lmerTest</code>,
+<code>car</code>, and <code>AICcmodavg</code> packages. If plan to use
+Bayesian estimation, load the <code>rstanarm</code> and <code>loo</code>
+packages when you are ready to get started.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(merTools)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmerTest)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AICcmodavg)</span></code></pre></div>
+<p><strong>or</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstanarm)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(loo)</span></code></pre></div>
+<p>Let’s take a look at a new data set for this example. Read in the
+data file called <code>horse_data.csv</code> from the class data
+sets.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the data</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>horses <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/horse_data.csv&quot;</span>)</span></code></pre></div>
+<p>These data simulated from 10 populations of wild horses in the
+Appalachian highlands of the southeastern United States. The response in
+the data is the proportion of horses <code>infected</code> out of the
+total starting number (<code>N</code>), and is a measure of the number
+of horses in a given population that were infected with rain rot
+(<em>Dermatophilus congolensis</em>) during a 10-year observation
+period.</p>
+<p>A brief description of the data follows:</p>
+<pre><code>  infected: Number of horses in population infected
+  N: number of horses observed within the population each year
+  rain: standardized measure of rain each year
+  temp: standardized temperature for each year
+  pop: population ID</code></pre>
+<p>Your charge will be to fit a series of models and analyze them within
+the context of a generalized linear mixed effects model to determine
+what influences rain and temperature have on the probability of
+infection across years.</p>
+<p>First, build a candidate model set with models corresponding to
+specific hypotheses. There are several covariates in this data set, so
+you will need to put some thought into how you choose your variables and
+what hypotheses these actually represent. You will need to make a
+minimum of 3 models and a maximum of 5.</p>
+<p>You need to account for repeat measurements within populations.
+Therefore, you must include <code>pop</code> as a random effect on the
+intercept within your models. You will also need to model the response
+as a binomial outcome (ie. number infected out of N) for each
+<code>pop</code> and <code>year</code>.</p>
+<p>Begin by making a variable in your data set to contain the number of
+horses that were <em>not</em> infected so we can do this.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>horses<span class="sc">$</span>not_infected <span class="ot">&lt;-</span> horses<span class="sc">$</span>N <span class="sc">-</span> horses<span class="sc">$</span>infected</span></code></pre></div>
+<p>We’ll also want to convert <code>pop</code> to a character string
+before we get started so that our plotting code is easier at the end of
+the assignment:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>horses<span class="sc">$</span>pop <span class="ot">&lt;-</span> <span class="fu">as.character</span>(horses<span class="sc">$</span>pop)</span></code></pre></div>
+<p>Now, you can fit a binomial GLMM that estimates the proportion of
+infected horses based on the numbers that were or were not infected in
+each year. You may use either restricted maximum likelihood estimation
+(i.e., <code>lme4</code>) or Bayesian estimation (i.e.,
+<code>rstan</code>) to fit these models.</p>
+<p>Make a list object of at least 3 models like this that you chose to
+test so you can do model selection later. If you have forgotten how to
+do this, have a look in the text book.</p>
+<p>You may wish to begin by fitting a null model (model of the mean) for
+comparison with the others. Here is an example to get you started. With
+restricted maximum likelihood estimation it would look like this:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>null_model <span class="ot">&lt;-</span> <span class="fu">glmer</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(infected, not_infected) <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> pop),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> horses,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> binomial</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>With Bayesian methods it would look like this:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>null_model <span class="ot">&lt;-</span> <span class="fu">stan_glmer</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(infected, not_infected) <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> pop),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> horses,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> binomial</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><strong>Question 1.</strong> Why did you choose to test each of the
+models in your model set? What hypotheses do each of these models
+represent?</p>
+<p>Next we will use model selection to rank our hypotheses (models) of
+rain rot. If you used REML, You can use the <code>aictab</code> function
+in the <code>AICcmodavg</code> package using the same methods we learned
+in <a
+href="https://danstich.github.io/worst-r/11-5-a-priori.html#tools-for-a-priori-model-selection">Chapter
+11</a>. If you used Bayesian estimation, then it’s <code>loo</code> for
+you (see <a
+href="https://danstich.github.io/worst-r/16-8-bayesian-model-selection.html">Chapter
+16.8</a>).</p>
+<p><strong>Question 2.</strong> According to your model selection
+statistics, which of your models was the top model? Is there clear
+evidence for a <em>best</em> model? Were there any variables that were
+clearly more important than others in your candidate set?</p>
+<p>If you fit your model with REML, go ahead and estimate the
+overdispersion parameter, <span class="math inline">\(\hat{c}\)</span>
+for your most complex model using the <code>c_hat()</code> function in
+the <code>AICcmodavg</code> package to determine whether we need to
+adjust our model selection. Remember that if <span
+class="math inline">\(\hat{c} &gt; 1\)</span> we should adjust our model
+selection to account for overdispersion, like this:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>c_hat_est <span class="ot">&lt;-</span> <span class="fu">c_hat</span>(my_model)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>c_hat_est</span></code></pre></div>
+<p>If <span class="math inline">\(\hat{c} &gt; 1\)</span>, you can
+adjust your model selection as follows:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">aictab</span>(<span class="at">cand.set =</span> model_list, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">modnames =</span> model_names, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">c.hat =</span> c_hat_est)</span></code></pre></div>
+<p><strong>Question 3.</strong> If you used REML: What was the estimated
+value of <code>c_hat</code> for your most complex model? If you needed
+to adjust your model selection, did this change the results you reported
+in <strong>Question 2</strong>? If you used Bayesian methods: did the
+Pareto’s <em>k</em> diagnostic exceed the threshold of 0.5 or 0.70 in
+any of your models?</p>
+<p>Now go ahead and look at the summary of your best model.</p>
+<p><strong>Food for thought</strong>: What factors were included in your
+best model? Are they all considered significant at <span
+class="math inline">\(alpha\)</span> = 0.05? If you used REML, you could
+use the <code>Anova()</code> function from the <code>car</code> library
+to find out. This is what it would look like for the example model that
+I made above.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(my_model, <span class="at">Type =</span> <span class="st">&quot;III&quot;</span>)</span></code></pre></div>
+<p>If you used Bayesian estimation, you could find out by examining
+whether any of the 95% credible intervals for your coefficients excluded
+zero.</p>
+<p>Remember, you can also examine directionality of relationships by
+examining the coefficients in either REML or Bayesian estimation.</p>
+<p><strong>Question 4.</strong> Of the variables included in your best
+model, which were statistically significant predictors of the
+probability that horses were infected with rain rot? How did the
+probability of rain rot change with this/these variables based your
+estimated coefficients (slopes).</p>
+<p>To wrap things up, let’s go ahead and make predictions from our best
+models following the examples in the textbook.</p>
+<p>You can start by calculating the observed proportion of horses
+infected out of the total number in each year and population:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>horses<span class="sc">$</span>proportion <span class="ot">&lt;-</span> horses<span class="sc">$</span>infected<span class="sc">/</span>horses<span class="sc">$</span>N</span></code></pre></div>
+<p>Next, make your predictions using the methods demonstrated in <a
+href="https://danstich.github.io/worst-r/15-2-glmm-logistic.html">Chapter
+15.2</a> or <a
+href="https://danstich.github.io/worst-r/20-2-logistic-regression-20-logistic.html#predictions-20-logistic-preds">Chapter
+20.2</a>.</p>
+<p><img src="hw10_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>And then begin your predictive plot by plotting the observed
+proportion in each population against the explanatory variable included
+in your best model. For the example below, I’ll use the
+<code>rain</code> variable as my <code>x</code> just for the sake of
+demonstration. Then, you will need to replace this if it was not
+<em>your</em> best supported explanatory variable and add your
+predictions:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(horses, </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> rain, <span class="at">y =</span> proportion, <span class="at">fill =</span> pop, <span class="at">color =</span> pop)) <span class="sc">+</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.20</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>pop)</span></code></pre></div>
+<p><img src="hw10_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><strong>Question 5.</strong> Use the results of your model selection
+statistics, the coefficients of your best model, and the predictive
+plots you have made to report your results in a <em>brief</em> (3-5
+sentences max) paragraph.</p>
+</div>
+</div>
+</div>
+
+<!DOCTYPE html>
+
+<br>
+
+<hr>
+
+<p style="color:gray">This work is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/legalcode">Creative Commons Attribution 4.0 International License.</a></p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
