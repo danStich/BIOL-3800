@@ -1,7 +1,7 @@
-name: "BIOL678"
+name: "BIOL3800"
 output_dir: "."
 navbar:
-  title: "BIOL678"
+  title: "BIOL3800"
   left:
   - icon: fa-home
     href: index.html
