@@ -33,6 +33,7 @@ The lecture tutorials provided below are linked directly to the online version o
  
 <h2 id = "multi"> **Probability and sampling distributions** </h2>
 ----
+
 <h3 id = "multi">Lecture tutorials</h3>
 [Chapter 5: Sampling distributions](https://danstich.github.io/worst-r/5-Chapter5.html)<br>
 
@@ -42,6 +43,7 @@ The lecture tutorials provided below are linked directly to the online version o
 
 <h2 id = "multi"> **Introduction to inferential statistics** </h2>
 ----
+
 <h3 id = "multi">Lecture tutorials</h3>
 [Chapter 6: Intro to inferential](https://danstich.github.io/worst-r/6-Chapter6.html)<br>
 
@@ -51,6 +53,7 @@ The lecture tutorials provided below are linked directly to the online version o
  
 <h2 id = "multi"> **Linear models** </h2>
 ----
+
 <h3 id = "multi">Lecture tutorials</h3>
 [Chapter 7: Linear models](https://danstich.github.io/worst-r/7-Chapter7.html)<br>
 [Chapter 8: General linear models](https://danstich.github.io/worst-r/8-Chapter8.html)<br>
@@ -61,6 +64,7 @@ The lecture tutorials provided below are linked directly to the online version o
 
 <h2 id = "multi"> **Diagnostics and effect sizes** </h2>
 ----
+
 <h3 id = "multi">Lecture tutorials</h3>
 [Chapter 9: Assumptions of linear models](https://danstich.github.io/worst-r/9-Chapter9.html)<br>
 [Chapter 10: Communicating effects](https://danstich.github.io/worst-r/10-Chapter10.html)<br>
@@ -71,6 +75,7 @@ The lecture tutorials provided below are linked directly to the online version o
 
 <h2 id = "multi"> **Model selection** </h2>
 ----
+
 <h3 id = "multi">Lecture tutorials</h3>
 [Chapter 11: Model selection](https://danstich.github.io/worst-r/11-Chapter11.html)<br>
 
@@ -78,21 +83,23 @@ The lecture tutorials provided below are linked directly to the online version o
 <a href="./hw07.html"> Model selection </a>
 
 
-<h2 id = "multi"> **Introduction to Bayesian Inference** </h2>
-----
-<h3 id = "multi">Lecture tutorials</h3>
-[Chapter 16: Intro to Bayes](https://danstich.github.io/worst-r/16-introduction-to-bayesian-inference.html)<br>
+<!-- <h2 id = "multi"> **Introduction to Bayesian Inference** </h2> -->
+<!-- ---- -->
 
-<h3 id = "multi"> Homework exercises</h3>
-No homework for this unit.
+<!-- <h3 id = "multi">Lecture tutorials</h3> -->
+<!-- [Chapter 16: Intro to Bayes](https://danstich.github.io/worst-r/16-introduction-to-bayesian-inference.html)<br> -->
+
+<!-- <h3 id = "multi"> Homework exercises</h3> -->
+<!-- No homework for this unit. -->
 
 
 <h2 id = "multi"> **GLM: Logistic regression** </h2>
 ----
+
 <h3 id = "multi">Lecture tutorials</h3>
 [Chapter 12: Introduction to GLM and Logistic regression](https://danstich.github.io/worst-r/12-Chapter12.html)<br>
 
-[Chapter 17: Bayesian logistic regression regression](https://danstich.github.io/worst-r/17-Chapter17.html)<br>
+<!-- [Chapter 17: Bayesian logistic regression regression](https://danstich.github.io/worst-r/17-Chapter17.html)<br> -->
 
 
 <h3 id = "multi"> Homework exercises </h3>
@@ -100,9 +107,10 @@ No homework for this unit.
 
 <h2 id = "multi"> **GLM: Count models** </h2>
 ----
+
 <h3 id = "multi">Lecture tutorials</h3>
 [Chapter 13: Count models](https://danstich.github.io/worst-r/13-Chapter13.html)<br>
-[Chapter 18: Bayesian count models](https://danstich.github.io/worst-r/18-Chapter18.html)<br>
+<!-- [Chapter 18: Bayesian count models](https://danstich.github.io/worst-r/18-Chapter18.html)<br> -->
 
 
 <h3 id = "multi"> Homework exercises</h3>
@@ -111,13 +119,14 @@ No homework for this unit.
 
 <h2 id = "multi"> **Generalized linear mixed models** </h2>
 ----
+
 <h3 id = "multi">Lecture tutorials (MLE)</h3>
 [Chapter 14: Linear mixed models](https://danstich.github.io/worst-r/14-Chapter14.html)<br>
 [Chapter 15: Generalized linear mixed models](https://danstich.github.io/worst-r/15-Chapter15.html)<br>
 
-<h3 id = "multi">Lecture tutorials (Bayesian)</h3>
-[Chapter 19: Bayesian hierarchical linear models](https://danstich.github.io/worst-r/19-Chapter19.html)<br>
-[Chapter 20: Bayesian hierarchical GLMs](https://danstich.github.io/worst-r/20-Chapter20.html)
+<!-- <h3 id = "multi">Lecture tutorials (Bayesian)</h3> -->
+<!-- [Chapter 19: Bayesian hierarchical linear models](https://danstich.github.io/worst-r/19-Chapter19.html)<br> -->
+<!-- [Chapter 20: Bayesian hierarchical GLMs](https://danstich.github.io/worst-r/20-Chapter20.html) -->
 
 
 <h3 id = "multi"> Homework exercises</h3>
