@@ -587,7 +587,7 @@ of flipping one coin at a time, we are flipping <span
 class="math inline">\(N\)</span> number of coins (<code>size</code>) per
 trial:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">10</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<pre><code>##  [1] 5 3 4 7 7 5 5 3 6 6</code></pre>
+<pre><code>##  [1] 5 4 2 4 5 4 4 5 4 6</code></pre>
 <p><br></p>
 <p><strong>Question 8.</strong> Imagine that there is an 85% chance of
 surviving a procedure. If the procedure was performed on 14 patients
@@ -601,7 +601,7 @@ is the average number I should expect to survive if I have 13 surgeons
 number of events that occur over some period of time. We can simulate
 data from the Poisson using (for example):</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rpois</span>(n <span class="ot">&lt;-</span> <span class="dv">10</span>, <span class="at">lambda =</span> <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##  [1] 10 11 13  7  6 10  9 10 14 11</code></pre>
+<pre><code>##  [1]  8 12 13 11 15 13  8  8 14 14</code></pre>
 <p>The code above takes 10 random samples from a Poisson distribution
 with a mean (and variance!) of 10.</p>
 <p>Suppose that we are interested in describing the distribution of the
