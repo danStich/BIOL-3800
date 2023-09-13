@@ -22,7 +22,7 @@ The lecture tutorials provided below are linked directly to the online version o
 
 <h2 id = "multi">**Data manipulation and visualization** </h2>
 ----
-
+ 
 <h3 id = "multi">Lecture tutorials</h3>
 [Chapter 3: Working with data](https://danstich.github.io/worst-r/3-Chapter3.html)<br>
 [Chapter 4: Plotting and graphics](https://danstich.github.io/worst-r/4-Chapter4.html)<br>
@@ -45,7 +45,7 @@ The lecture tutorials provided below are linked directly to the online version o
 ----
 
 <h3 id = "multi">Lecture tutorials</h3>
-[Chapter 6: Intro to inferential](https://danstich.github.io/worst-r/6-Chapter6.html)<br>
+[Chapter 6: Intro to inferential statistics](https://danstich.github.io/worst-r/6-Chapter6.html)<br>
 
 <h3 id = "multi"> Homework exercises</h3>
 <a href="./hw04.html"> Hypothesis testing </a> 
