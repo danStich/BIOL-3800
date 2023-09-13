@@ -536,9 +536,9 @@ using the <code>glm()</code> function like so:</p>
 ## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 2.549 seconds (Warm-up)
-## Chain 1:                2.52 seconds (Sampling)
-## Chain 1:                5.069 seconds (Total)
+## Chain 1:  Elapsed Time: 2.699 seconds (Warm-up)
+## Chain 1:                2.969 seconds (Sampling)
+## Chain 1:                5.668 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;count&#39; NOW (CHAIN 2).
@@ -561,9 +561,9 @@ using the <code>glm()</code> function like so:</p>
 ## Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 2.668 seconds (Warm-up)
-## Chain 2:                2.498 seconds (Sampling)
-## Chain 2:                5.166 seconds (Total)
+## Chain 2:  Elapsed Time: 2.535 seconds (Warm-up)
+## Chain 2:                2.439 seconds (Sampling)
+## Chain 2:                4.974 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;count&#39; NOW (CHAIN 3).
@@ -586,9 +586,9 @@ using the <code>glm()</code> function like so:</p>
 ## Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 2.58 seconds (Warm-up)
-## Chain 3:                2.516 seconds (Sampling)
-## Chain 3:                5.096 seconds (Total)
+## Chain 3:  Elapsed Time: 2.563 seconds (Warm-up)
+## Chain 3:                2.356 seconds (Sampling)
+## Chain 3:                4.919 seconds (Total)
 ## Chain 3: 
 ## 
 ## SAMPLING FOR MODEL &#39;count&#39; NOW (CHAIN 4).
@@ -611,9 +611,9 @@ using the <code>glm()</code> function like so:</p>
 ## Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 4: 
-## Chain 4:  Elapsed Time: 2.574 seconds (Warm-up)
-## Chain 4:                2.544 seconds (Sampling)
-## Chain 4:                5.118 seconds (Total)
+## Chain 4:  Elapsed Time: 2.68 seconds (Warm-up)
+## Chain 4:                2.286 seconds (Sampling)
+## Chain 4:                4.966 seconds (Total)
 ## Chain 4:</code></pre>
 <p>Before you look at the summary of the model, be sure to have a look
 at the regression diagnostics for the count model. Does it appear that
@@ -637,30 +637,30 @@ at the model summary.</p>
 ## 
 ## Estimates:
 ##                         mean   sd   10%
-## (Intercept)           36.0    6.5 27.7 
+## (Intercept)           35.9    6.2 27.9 
 ## year                   0.0    0.0  0.0 
 ## sexMale                0.1    0.0  0.1 
-## reciprocal_dispersion  7.7    0.7  6.8 
+## reciprocal_dispersion  7.7    0.8  6.8 
 ##                         50%   90%
-## (Intercept)           35.9  44.3 
+## (Intercept)           35.8  43.9 
 ## year                   0.0   0.0 
 ## sexMale                0.1   0.2 
 ## reciprocal_dispersion  7.7   8.7 
 ## 
 ## Fit Diagnostics:
 ##            mean   sd   10%   50%   90%
-## mean_PPD 20.8    0.6 19.9  20.8  21.6 
+## mean_PPD 20.7    0.6 19.9  20.7  21.6 
 ## 
 ## The mean_ppd is the sample average posterior predictive distribution of the outcome variable (for details see help(&#39;summary.stanreg&#39;)).
 ## 
 ## MCMC diagnostics
 ##                       mcse Rhat n_eff
-## (Intercept)           0.1  1.0  4830 
-## year                  0.0  1.0  4835 
-## sexMale               0.0  1.0  5004 
-## reciprocal_dispersion 0.0  1.0  4693 
-## mean_PPD              0.0  1.0  4449 
-## log-posterior         0.0  1.0  1774 
+## (Intercept)           0.1  1.0  4581 
+## year                  0.0  1.0  4580 
+## sexMale               0.0  1.0  4139 
+## reciprocal_dispersion 0.0  1.0  4206 
+## mean_PPD              0.0  1.0  4475 
+## log-posterior         0.0  1.0  1780 
 ## 
 ## For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).</code></pre>
 <p>You’ll note that we have included both categorical and numerical
@@ -728,39 +728,28 @@ set. Let’s take another quick look at it just to refresh our
 memories.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the first 10 rows of data</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(uw, <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##    year region
-## 1  1986 Africa
-## 2  1987 Africa
-## 3  1987 Africa
-## 4  1988 Africa
-## 5  1988 Africa
-## 6  1988 Africa
-## 7  1988 Africa
-## 8  1990 Africa
-## 9  1990 Africa
-## 10 1991 Africa
-##                        country    sex
-## 1                      Senegal Female
-## 2                         Mali Female
-## 3                      Burundi Female
-## 4                         Togo Female
-## 5                     Zimbabwe Female
-## 6                       Uganda Female
-## 7                        Ghana Female
-## 8                      Nigeria Female
-## 9                   Mauritania Female
-## 10 United Republic of Tanzania Female
-##    number
-## 1      15
-## 2      27
-## 3      27
-## 4      19
-## 5       7
-## 6      19
-## 7      23
-## 8      33
-## 9      42
-## 10     23</code></pre>
+<pre><code>##    year region                     country
+## 1  1986 Africa                     Senegal
+## 2  1987 Africa                        Mali
+## 3  1987 Africa                     Burundi
+## 4  1988 Africa                        Togo
+## 5  1988 Africa                    Zimbabwe
+## 6  1988 Africa                      Uganda
+## 7  1988 Africa                       Ghana
+## 8  1990 Africa                     Nigeria
+## 9  1990 Africa                  Mauritania
+## 10 1991 Africa United Republic of Tanzania
+##       sex number
+## 1  Female     15
+## 2  Female     27
+## 3  Female     27
+## 4  Female     19
+## 5  Female      7
+## 6  Female     19
+## 7  Female     23
+## 8  Female     33
+## 9  Female     42
+## 10 Female     23</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s find out how many unique regions we have in the data set</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(uw<span class="sc">$</span>region)</span></code></pre></div>
 <pre><code>## [1] &quot;Africa&quot;               
@@ -825,9 +814,9 @@ or <code>stan_glm()</code>!</p>
 ## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 1: 
-## Chain 1:  Elapsed Time: 8.141 seconds (Warm-up)
-## Chain 1:                7.286 seconds (Sampling)
-## Chain 1:                15.427 seconds (Total)
+## Chain 1:  Elapsed Time: 7.824 seconds (Warm-up)
+## Chain 1:                7.099 seconds (Sampling)
+## Chain 1:                14.923 seconds (Total)
 ## Chain 1: 
 ## 
 ## SAMPLING FOR MODEL &#39;count&#39; NOW (CHAIN 2).
@@ -850,9 +839,9 @@ or <code>stan_glm()</code>!</p>
 ## Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 2: 
-## Chain 2:  Elapsed Time: 8.357 seconds (Warm-up)
-## Chain 2:                7.463 seconds (Sampling)
-## Chain 2:                15.82 seconds (Total)
+## Chain 2:  Elapsed Time: 8.456 seconds (Warm-up)
+## Chain 2:                7.95 seconds (Sampling)
+## Chain 2:                16.406 seconds (Total)
 ## Chain 2: 
 ## 
 ## SAMPLING FOR MODEL &#39;count&#39; NOW (CHAIN 3).
@@ -875,9 +864,9 @@ or <code>stan_glm()</code>!</p>
 ## Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 3: 
-## Chain 3:  Elapsed Time: 7.895 seconds (Warm-up)
-## Chain 3:                8.173 seconds (Sampling)
-## Chain 3:                16.068 seconds (Total)
+## Chain 3:  Elapsed Time: 7.63 seconds (Warm-up)
+## Chain 3:                8.218 seconds (Sampling)
+## Chain 3:                15.848 seconds (Total)
 ## Chain 3: 
 ## 
 ## SAMPLING FOR MODEL &#39;count&#39; NOW (CHAIN 4).
@@ -900,9 +889,9 @@ or <code>stan_glm()</code>!</p>
 ## Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 ## Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 ## Chain 4: 
-## Chain 4:  Elapsed Time: 8.28 seconds (Warm-up)
-## Chain 4:                7.812 seconds (Sampling)
-## Chain 4:                16.092 seconds (Total)
+## Chain 4:  Elapsed Time: 8.046 seconds (Warm-up)
+## Chain 4:                7.346 seconds (Sampling)
+## Chain 4:                15.392 seconds (Total)
 ## Chain 4:</code></pre>
 <p>Plot the residual diagnostics for this model following the approach
 in <a href="https://danstich.github.io/worst-r/13-3-negbin.html">Chapter
