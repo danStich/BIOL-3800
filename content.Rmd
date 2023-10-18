@@ -16,7 +16,7 @@ The lecture tutorials provided below are linked directly to the online version o
 [Chapter 1: Introduction to programming in R](https://danstich.github.io/worst-r/1-Chapter1.html)<br>
 [Chapter 2: Data Structures](https://danstich.github.io/worst-r/2-Chapter2.html)
 
-<h3 id = "multi">Homework exercises</h3>
+<h3 id = "multi"> Homework 1</h3>
 <a href="./hw01_introToR.html"> Introduction to R </a><br> 
 
 
@@ -27,7 +27,7 @@ The lecture tutorials provided below are linked directly to the online version o
 [Chapter 3: Working with data](https://danstich.github.io/worst-r/3-Chapter3.html)<br>
 [Chapter 4: Plotting and graphics](https://danstich.github.io/worst-r/4-Chapter4.html)<br>
 
-<h3 id = "multi">Homework exercises</h3>
+<h3 id = "multi">Homework 2</h3>
 <a href="./hw02.html"> Data manipulation and visualization </a>  
  
  
@@ -37,7 +37,7 @@ The lecture tutorials provided below are linked directly to the online version o
 <h3 id = "multi">Lecture tutorials</h3>
 [Chapter 5: Sampling distributions](https://danstich.github.io/worst-r/5-Chapter5.html)<br>
 
-<h3 id = "multi"> Homework exercises</h3>
+<h3 id = "multi"> Homework 3</h3>
 <a href="./hw03.html"> Sampling distributions </a> 
 
 
@@ -47,7 +47,7 @@ The lecture tutorials provided below are linked directly to the online version o
 <h3 id = "multi">Lecture tutorials</h3>
 [Chapter 6: Intro to inferential statistics](https://danstich.github.io/worst-r/6-Chapter6.html)<br>
 
-<h3 id = "multi"> Homework exercises</h3>
+<h3 id = "multi"> Homework 4</h3>
 <a href="./hw04.html"> Hypothesis testing </a> 
 
  
@@ -58,7 +58,7 @@ The lecture tutorials provided below are linked directly to the online version o
 [Chapter 7: Linear models](https://danstich.github.io/worst-r/7-Chapter7.html)<br>
 [Chapter 8: General linear models](https://danstich.github.io/worst-r/8-Chapter8.html)<br>
 
-<h3 id = "multi"> Homework exercises</h3>
+<h3 id = "multi"> Homework 5</h3>
 <a href="./hw05.html"> Linear models </a>
 
 
@@ -69,7 +69,7 @@ The lecture tutorials provided below are linked directly to the online version o
 [Chapter 9: Assumptions of linear models](https://danstich.github.io/worst-r/9-Chapter9.html)<br>
 [Chapter 10: Communicating effects](https://danstich.github.io/worst-r/10-Chapter10.html)<br>
 
-<h3 id = "multi"> Homework exercises</h3>
+<h3 id = "multi"> Homework 6</h3>
 <a href="./hw06.html"> Diagnostics and effects </a>
 
 
@@ -79,7 +79,7 @@ The lecture tutorials provided below are linked directly to the online version o
 <h3 id = "multi">Lecture tutorials</h3>
 [Chapter 11: Model selection](https://danstich.github.io/worst-r/11-Chapter11.html)<br>
 
-<h3 id = "multi"> Homework exercises</h3>
+<h3 id = "multi"> Homework 7</h3>
 <a href="./hw07.html"> Model selection </a>
 
 
@@ -102,7 +102,7 @@ The lecture tutorials provided below are linked directly to the online version o
 <!-- [Chapter 17: Bayesian logistic regression regression](https://danstich.github.io/worst-r/17-Chapter17.html)<br> -->
 
 
-<h3 id = "multi"> Homework exercises </h3>
+<h3 id = "multi"> Homework 8 </h3>
 <a href="./hw08.html"> Logistic regression </a>
 
 <h2 id = "multi"> **GLM: Count models** </h2>
@@ -113,7 +113,7 @@ The lecture tutorials provided below are linked directly to the online version o
 <!-- [Chapter 18: Bayesian count models](https://danstich.github.io/worst-r/18-Chapter18.html)<br> -->
 
 
-<h3 id = "multi"> Homework exercises</h3>
+<h3 id = "multi"> Homework 9</h3>
 <a href="./hw09.html"> Count models </a>
 
 
@@ -129,7 +129,7 @@ The lecture tutorials provided below are linked directly to the online version o
 <!-- [Chapter 20: Bayesian hierarchical GLMs](https://danstich.github.io/worst-r/20-Chapter20.html) -->
 
 
-<h3 id = "multi"> Homework exercises</h3>
+<h3 id = "multi"> Homework 10</h3>
 <a href="./hw10.html"> Hierarchical models </a>
 
 
