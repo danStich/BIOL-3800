@@ -13,7 +13,7 @@ By the end of this lab, you should 1) be comfortable specifying generalized line
 
 We'll be working with functions from the `tidyverse` as usual this week so you can go ahead and load that now.
 
-You may choose to complete this assignment using either MLE or Bayesian estimation. If you choose to use MLE, you'll also need the `MASS` and `car` packages. If you choose to use Bayesian, you'll want to load the `rstanarm` package for this one!
+You may choose to complete this assignment using either MLE or Bayesian estimation. If you choose to use MLE, you'll also need the `MASS` and `car` packages.
 
 I am going to load them all so I can do it both ways!
 
@@ -21,7 +21,6 @@ I am going to load them all so I can do it both ways!
 library(tidyverse) # For everything we love
 library(MASS)      # For negative.binomial family in glm()
 library(car)       # For Anova()
-library(rstanarm)
 ```
 
 ## Exercises
@@ -80,18 +79,6 @@ model <- glm(number ~ year + sex,
 )
 ```
 
-
-Or, you could fit it using `stan_glm()` from the `rstanarm` package like this:
-```{r}
-# Fit the model, being sure to specify
-# the appropriate error distribution and
-# link function.
-model <- stan_glm(number ~ year + sex,
-  data = africa,
-  family = neg_binomial_2()
-)
-```
-
 Before you look at the summary of the model, be sure to have a look at the regression diagnostics for the count model. Does it appear that you have violated the assumptions underlying the model that you have fit? Think about why or why not. This is not a homework question, it is doing the analysis the right way.
 
 Now that you have looked at the regression diagnostics, take a look at the model summary.
@@ -109,7 +96,7 @@ If you try to predict the mean expected value for females (`Intercept` term) fro
 
 ...then we are implicitly telling R that the variable `year` is being held constant at zero. Because the scale of year is *large* (1986-2015) relative to our counts, we get ridiculously large values if we try to predict the mean value of `number` for`female` without specifying a reasonable value for `year`. So, if we want to get a reasonable prediction for the mean expected value of `number` for females, we need a reasonable value of `year`. In most cases, unless you are predicting across the range of years, using the mean is fine (although not ideal if it is significant!):
 
-Here is an example of how to predict the mean value for females from the output of the `glm()` fit above. The process is identical for the estimates from `stan_glm()` although your estimates will be slightly different.
+Here is an example of how to predict the mean value for females from the output of the `glm()` fit above.
 
 ```{r}
 # Predict mean values of female
@@ -159,7 +146,7 @@ ggplot(uw, aes(x = region, y = number)) +
 
 It's pretty obvious here that no matter which way we slice it, these are decidedly *not* coming from a Poisson distribution. So, what do we do? This is GLM! We just need to use a different error distribution. From our histogram, it should be clear that we are now working with a negative binomial error structure.
 
-Start by fitting a negative binomial regression model to the data that tests the effect of `region` (x) on `number` (y). This one is essentially an ANOVA model, but with counts and a different sampling distribution that we can fit with `glm()` or `stan_glm()`!
+Start by fitting a negative binomial regression model to the data that tests the effect of `region` (x) on `number` (y). This one is essentially an ANOVA model, but with counts and a different sampling distribution that we can fit with `glm()`.
 
 Here is an example fit with the `glm()` function:
 
@@ -209,14 +196,7 @@ First, check the overall effect of `region` on `number` using the `Anova()` func
 Anova(nb_mod, Type = "III")
 ```
 
-If you used `stan_glm()` to fit the model, remember that you'll want to start by looking at the coefficients. To determine whether any of the regions differ significantly from the intercept:
-
-```{r}
-plot(nb_mod)
-```
-
-
-In either case, we should conclude that there was there a significant effect of `region` on the number of individuals per 100 that were underweight.
+We should conclude that there was there a significant effect of `region` on the number of individuals per 100 that were underweight.
 
 Now, predict the mean number of individuals that were underweight per 100 for each of the regions in this study using the approach demonstrated in [Chapter 13.4](https://danstich.github.io/worst-r/13-4-negbin.html) or [Chapter 18.4.3](https://danstich.github.io/worst-r/18-4-zinfl-18.html#step-2-counts-given-presence).
 
@@ -230,7 +210,7 @@ Finally, we can use these data to determine how the number of underweight indivi
 
 Make two models for this section. For the first model, consider only the **additive** effects of `region` and `year` (x variables) on `number` (y). In the second model, include the **interaction** effect between `region` and `year` on `number`.
 
-If you fit your models using MLE with the `glm()` function, use the `AIC()` function in base R or the `aictab()` function from `AICcmodavg` to get the AIC score for each of the two models you have created and compare them to determine whether one of these is "significantly" better than the other. If you used `stan_glm()` function to fit the models with Bayesian estimation, you can compare the models using LOO-IC or elpd~loo~ from the `loo` package as we did in Chapters 17 and 18.
+Use the `aictab()` function from `AICcmodavg` to get the AIC score for each of the two models you have created and compare them to determine whether one of these is "significantly" better than the other. 
 
 Plot the predictions of the best model.
 

@@ -488,16 +488,6 @@ we need to use a GLM to accommodate this.</p>
 <p>You could do it like this with the <code>glm()</code> function:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>v_mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(dead <span class="sc">~</span> Concentration <span class="sc">+</span> Time, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="at">data =</span> vd)</span></code></pre></div>
-<p>Or you could fit it like this in the <code>rstanarm</code>
-package:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Library</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstanarm)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>v_mod <span class="ot">&lt;-</span> <span class="fu">stan_glm</span>(dead <span class="sc">~</span> Concentration <span class="sc">+</span> Time,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> vd,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">cores =</span> <span class="dv">4</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                  )</span></code></pre></div>
 <p>Cool, that was easy!</p>
 </div>
 <div id="results" class="section level4">
@@ -510,12 +500,6 @@ package to use the correct calculations because we have continuous and
 categorical variables. The only difference is that we are now using an
 analysis of deviance to summarize significance, which requires the use
 of a Type-II test instead of a Type-III test.</p>
-<p>If you used <code>stan_glm()</code> to fit the model: Remember, Stan
-won’t give you p-values or significance codes, so if you want to know
-whether groups are different, you need to do the math here and compare
-posteriors like we did in <a
-href="https://danstich.github.io/worst-r/17-2-logistic-17.html#interpretting-17">Chapter
-17.2</a>.</p>
 <p><strong>Question 1.</strong> At the default confidence level (<span
 class="math inline">\(\alpha\)</span> = 0.05), what can you determine
 about effects of <code>Concentration</code> and <code>Time</code> with
@@ -523,8 +507,8 @@ respect to statistical significance? Answer in sentence form, stating
 the null hypotheses and supporting statistics.</p>
 <p>Just as with all of our other models, we can use the
 <code>summary()</code> function to get the output from R.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the summary of the model</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(v_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the summary of the model</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(v_mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = dead ~ Concentration + Time, family = &quot;binomial&quot;, 
@@ -535,25 +519,16 @@ the null hypotheses and supporting statistics.</p>
 ## -4.3208  -0.0218   0.0214   0.2047   5.0817  
 ## 
 ## Coefficients:
-##                     Estimate Std. Error
-## (Intercept)       -13.825053   0.355912
-## Concentration0.25  11.252573   0.311103
-## Concentration0.5   12.201641   0.325214
-## Concentration1     13.407026   0.344278
-## Concentration2     13.527866   0.342963
-## Concentration3     13.464877   0.345367
-## Time                0.182631   0.005109
-##                   z value Pr(&gt;|z|)    
-## (Intercept)        -38.84   &lt;2e-16 ***
-## Concentration0.25   36.17   &lt;2e-16 ***
-## Concentration0.5    37.52   &lt;2e-16 ***
-## Concentration1      38.94   &lt;2e-16 ***
-## Concentration2      39.44   &lt;2e-16 ***
-## Concentration3      38.99   &lt;2e-16 ***
-## Time                35.75   &lt;2e-16 ***
+##                     Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)       -13.825053   0.355912  -38.84   &lt;2e-16 ***
+## Concentration0.25  11.252573   0.311103   36.17   &lt;2e-16 ***
+## Concentration0.5   12.201641   0.325214   37.52   &lt;2e-16 ***
+## Concentration1     13.407026   0.344278   38.94   &lt;2e-16 ***
+## Concentration2     13.527866   0.342963   39.44   &lt;2e-16 ***
+## Concentration3     13.464877   0.345367   38.99   &lt;2e-16 ***
+## Time                0.182631   0.005109   35.75   &lt;2e-16 ***
 ## ---
-## Signif. codes:  
-##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1  &#39; &#39; 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
@@ -623,54 +598,54 @@ more complicated when we have multiple explanatory variables. The
 <code>predict</code> function requires a <code>data.frame</code> with
 <code>names</code> that match the <code>names</code> of explanatory
 variables from our original data set, <code>vd</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean predicted value and SE for the predictions</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># on the link scale</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>logit_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( <span class="fu">predict</span>(v_mod, <span class="at">type =</span> <span class="st">&quot;link&quot;</span>, <span class="at">se.fit =</span> <span class="cn">TRUE</span>) )</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Now get lower and upper CIs</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>logit_preds<span class="sc">$</span>lwr <span class="ot">&lt;-</span> logit_preds<span class="sc">$</span>fit <span class="sc">+</span> logit_preds<span class="sc">$</span>se.fit <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="fl">0.025</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>logit_preds<span class="sc">$</span>upr <span class="ot">&lt;-</span> logit_preds<span class="sc">$</span>fit <span class="sc">+</span> logit_preds<span class="sc">$</span>se.fit <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mean predicted value and SE for the predictions</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># on the link scale</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>logit_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( <span class="fu">predict</span>(v_mod, <span class="at">type =</span> <span class="st">&quot;link&quot;</span>, <span class="at">se.fit =</span> <span class="cn">TRUE</span>) )</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Now get lower and upper CIs</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>logit_preds<span class="sc">$</span>lwr <span class="ot">&lt;-</span> logit_preds<span class="sc">$</span>fit <span class="sc">+</span> logit_preds<span class="sc">$</span>se.fit <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="fl">0.025</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>logit_preds<span class="sc">$</span>upr <span class="ot">&lt;-</span> logit_preds<span class="sc">$</span>fit <span class="sc">+</span> logit_preds<span class="sc">$</span>se.fit <span class="sc">*</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code></pre></div>
 <p>Now, we need to define a function to invert the logit link function
 if we want to get our predictions back on the probability scale (and we
 do). If you fit this model using <code>rstanarm</code> you can use the
 <code>invlogit()</code> function that ships with it.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>invlogit <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">exp</span>(x) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(x))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>invlogit <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">exp</span>(x) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(x))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now we can convert our predictions to the probability scale. Here, we
 loop over columns 1, 3, and 4 of our <code>preds</code> dataframe using
 the <code>apply</code> function because the second column is just the
 standard errors for our predicted fit at each point. This gives us mean
 and 95% CI on the probability scale.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the predictions to the probability scale</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>real_preds <span class="ot">&lt;-</span> <span class="fu">apply</span>(logit_preds, <span class="dv">2</span>, invlogit)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add our predictions back to the original data</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>vd_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(vd, real_preds)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the predictions to the probability scale</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>real_preds <span class="ot">&lt;-</span> <span class="fu">apply</span>(logit_preds, <span class="dv">2</span>, invlogit)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add our predictions back to the original data</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>vd_preds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(vd, real_preds)</span></code></pre></div>
 <p>Finally, let’s plot our predictions. Note that here we will plot our
 raw data as the proportion of zebra mussels dead at a given time and
 concentration by trial (date). Here is my graph:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize proportion dead at time by concentration</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use dates so we can show reps</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>sum_points <span class="ot">&lt;-</span> vd_preds <span class="sc">%&gt;%</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Concentration, Time, Date) <span class="sc">%&gt;%</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">props =</span> <span class="fu">sum</span>(dead)<span class="sc">/</span><span class="fu">length</span>(dead))</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the predictions</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(vd_preds, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> fit)) <span class="sc">+</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">fill =</span> Concentration), <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> Concentration)) <span class="sc">+</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> props, <span class="at">color =</span> Concentration), <span class="at">data =</span> sum_points,</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Hours&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability of mortality&quot;</span>) <span class="sc">+</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
-<p><img src="hw08_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize proportion dead at time by concentration</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use dates so we can show reps</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>sum_points <span class="ot">&lt;-</span> vd_preds <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Concentration, Time, Date) <span class="sc">%&gt;%</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">props =</span> <span class="fu">sum</span>(dead)<span class="sc">/</span><span class="fu">length</span>(dead))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the predictions</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(vd_preds, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> fit)) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr, <span class="at">fill =</span> Concentration), <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> Concentration)) <span class="sc">+</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> props, <span class="at">color =</span> Concentration), <span class="at">data =</span> sum_points,</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Hours&quot;</span>) <span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Probability of mortality&quot;</span>) <span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="hw08_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Using either the graph or the estimates in the <code>fit</code>
 column of <code>preds</code>, we can estimate about how much
 <code>dead</code> changes across the range of <code>Time</code>
