@@ -425,12 +425,12 @@ Introduction
 </h2>
 <p>This week in lab, we will start to take a closer look at generalized
 linear models (GLM) through the lens of logisitic regression using
-maximum likelihood estimation and Bayesian inference. This is a family
-that includes multiple types of analyses depending on the data. For
-example, we might have binary data (0, 1), binomial data (number of
-success per some number of trials), or multinomial data (group
-membership as a response). We will look at the simplest of these cases,
-binary logistic regression, this week in the homework.</p>
+maximum likelihood estimation. This is a family that includes multiple
+types of analyses depending on the data. For example, we might have
+binary data (0, 1), binomial data (number of success per some number of
+trials), or multinomial data (group membership as a response). We will
+look at the simplest of these cases, binary logistic regression, this
+week in the homework.</p>
 <div id="the-data" class="section level2">
 <h2>The data</h2>
 <p>For our exercise this week, we will work with a data set from a
@@ -483,8 +483,7 @@ we need to use a GLM to accommodate this.</p>
 <p>Start by fitting a model with additive effects of
 <code>Concentration</code> and <code>Time</code> on the response
 <code>dead</code> using either maximum likelihood estimation
-(<code>glm()</code> function in base R) or Bayesian estimation
-(<code>stan_glm()</code> function in <code>rstanarm</code>).</p>
+(<code>glm()</code> function in base R.</p>
 <p>You could do it like this with the <code>glm()</code> function:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>v_mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(dead <span class="sc">~</span> Concentration <span class="sc">+</span> Time, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>, <span class="at">data =</span> vd)</span></code></pre></div>
@@ -557,11 +556,9 @@ intercept, then the remaining coefficients are directly comparable.</p>
 R<sup>2</sup> value that we have become familiar with during the past
 several weeks while working with linear models. There is no
 R<sup>2</sup> value because we are no longer estimating these models
-using ordinary least squares, but rather maximum likelihood estimation
-or Bayesian inference.</p>
-<p>Under Bayesian inference in the <code>rstanarm</code> package, we can
-just use the <code>bayes_R2()</code> function to get this.</p>
-<p>If we wanted to get an analagous metric of variance explained by our
+using ordinary least squares, but rather maximum likelihood
+estimation.</p>
+<p>If we wanted to get an analogous metric of variance explained by our
 model for the MLE fit using <code>glm()</code> output, we could estimate
 a <em>pseudo-R<sup>2</sup></em>. There are many of these available
 depending on the model and nature of our data. The simplest, and

@@ -7,7 +7,7 @@
 
 <h2 id="multi"> Introduction </h2>
 
-This week in lab, we will start to take a closer look at generalized linear models (GLM) through the lens of logisitic regression using maximum likelihood estimation and Bayesian inference. This is a family that includes multiple types of analyses depending on the data. For example, we might have binary data (0, 1), binomial data (number of success per some number of trials), or multinomial data (group membership as a response). We will look at the simplest of these cases, binary logistic regression, this week in the homework.
+This week in lab, we will start to take a closer look at generalized linear models (GLM) through the lens of logisitic regression using maximum likelihood estimation. This is a family that includes multiple types of analyses depending on the data. For example, we might have binary data (0, 1), binomial data (number of success per some number of trials), or multinomial data (group membership as a response). We will look at the simplest of these cases, binary logistic regression, this week in the homework.
 
 ## The data
 For our exercise this week, we will work with a data set from a Biological Field Station intern project. The purpose of the project was to test the efficacy of Virkon as a molluscicide for dissinfecting equipment following exposure to zebra mussels *Dreissena polymorpha*. The study examined the effects of exposure time and concentration on mortality. The response in this data set is `dead`, a 1/0 variable indicating whether or not a zebra mussel was dead. Usually, with this kind of data, we use a `1` to indicate survival, but it seemed like too much fun to pass up the opportunity to model mortality as a success. So, for this data set a `1` indicates dead.
@@ -45,7 +45,7 @@ Let's start with a simple example to get you moving along. We are interested in 
 
  
 #### Analysis
-Start by fitting a model with additive effects of `Concentration` and `Time` on the response `dead` using either maximum likelihood estimation (`glm()` function in base R) or Bayesian estimation (`stan_glm()` function in `rstanarm`).
+Start by fitting a model with additive effects of `Concentration` and `Time` on the response `dead` using either maximum likelihood estimation (`glm()` function in base R.
 
 You could do it like this with the `glm()` function:
 
@@ -80,11 +80,9 @@ Even though these parameters are on the logit scale, we can still make limited i
 
 <!-- Here, we see that the coefficient for `Time` is positive (`r round(v_mod$coefficients[7], 3)`), meaning that we would predict probability of `dead` to be directly proportional to `Time` (higher probability of death following increased exposure time). This, of course, seems perfectly reasonable. -->
 
-One thing that you'll notice is missing from this output is the R^2^ value that we have become familiar with during the past several weeks while working with linear models. There is no R^2^ value because we are no longer estimating these models using ordinary least squares, but rather maximum likelihood estimation or Bayesian inference. 
+One thing that you'll notice is missing from this output is the R^2^ value that we have become familiar with during the past several weeks while working with linear models. There is no R^2^ value because we are no longer estimating these models using ordinary least squares, but rather maximum likelihood estimation. 
 
-Under Bayesian inference in the `rstanarm` package, we can just use the `bayes_R2()` function to get this.
-
-If we wanted to get an analagous metric of variance explained by our model for the MLE fit using `glm()` output, we could estimate a *pseudo-R^2^*. There are many of these available depending on the model and nature of our data. The simplest, and arguably most common is the **McFadden R^2^**. To estimate this one, we compare the deviance of our model to the deviance of an intercept-only (i.e. "null") model using the output from the `summary` function above:
+If we wanted to get an analogous metric of variance explained by our model for the MLE fit using `glm()` output, we could estimate a *pseudo-R^2^*. There are many of these available depending on the model and nature of our data. The simplest, and arguably most common is the **McFadden R^2^**. To estimate this one, we compare the deviance of our model to the deviance of an intercept-only (i.e. "null") model using the output from the `summary` function above:
 
 $$McFadden R^2 = 1 - \frac{Deviance_{residual}}{Deviance_{null}}$$
 

@@ -440,14 +440,11 @@ diagnose and interpret the results of these models.</p>
 usual this week so you can go ahead and load that now.</p>
 <p>You may choose to complete this assignment using either MLE or
 Bayesian estimation. If you choose to use MLE, you’ll also need the
-<code>MASS</code> and <code>car</code> packages. If you choose to use
-Bayesian, you’ll want to load the <code>rstanarm</code> package for this
-one!</p>
+<code>MASS</code> and <code>car</code> packages.</p>
 <p>I am going to load them all so I can do it both ways!</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># For everything we love</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)      <span class="co"># For negative.binomial family in glm()</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)       <span class="co"># For Anova()</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstanarm)</span></code></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)       <span class="co"># For Anova()</span></span></code></pre></div>
 <div id="exercises" class="section level2">
 <h2>Exercises</h2>
 <p>Let’s start by reading the file and taking a look at the structure of
@@ -506,115 +503,6 @@ using the <code>glm()</code> function like so:</p>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> africa,</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="st">&quot;negative.binomial&quot;</span>(<span class="at">theta =</span> <span class="dv">1</span>)</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p>Or, you could fit it using <code>stan_glm()</code> from the
-<code>rstanarm</code> package like this:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model, being sure to specify</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the appropriate error distribution and</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># link function.</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">stan_glm</span>(number <span class="sc">~</span> year <span class="sc">+</span> sex,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> africa,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">neg_binomial_2</span>()</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## 
-## SAMPLING FOR MODEL &#39;count&#39; NOW (CHAIN 1).
-## Chain 1: 
-## Chain 1: Gradient evaluation took 0 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
-## Chain 1: Adjust your expectations accordingly!
-## Chain 1: 
-## Chain 1: 
-## Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
-## Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
-## Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
-## Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
-## Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
-## Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-## Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-## Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-## Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-## Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
-## Chain 1: 
-## Chain 1:  Elapsed Time: 2.699 seconds (Warm-up)
-## Chain 1:                2.969 seconds (Sampling)
-## Chain 1:                5.668 seconds (Total)
-## Chain 1: 
-## 
-## SAMPLING FOR MODEL &#39;count&#39; NOW (CHAIN 2).
-## Chain 2: 
-## Chain 2: Gradient evaluation took 0 seconds
-## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
-## Chain 2: Adjust your expectations accordingly!
-## Chain 2: 
-## Chain 2: 
-## Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
-## Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)
-## Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)
-## Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)
-## Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)
-## Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-## Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-## Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-## Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-## Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-## Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-## Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
-## Chain 2: 
-## Chain 2:  Elapsed Time: 2.535 seconds (Warm-up)
-## Chain 2:                2.439 seconds (Sampling)
-## Chain 2:                4.974 seconds (Total)
-## Chain 2: 
-## 
-## SAMPLING FOR MODEL &#39;count&#39; NOW (CHAIN 3).
-## Chain 3: 
-## Chain 3: Gradient evaluation took 0 seconds
-## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
-## Chain 3: Adjust your expectations accordingly!
-## Chain 3: 
-## Chain 3: 
-## Chain 3: Iteration:    1 / 2000 [  0%]  (Warmup)
-## Chain 3: Iteration:  200 / 2000 [ 10%]  (Warmup)
-## Chain 3: Iteration:  400 / 2000 [ 20%]  (Warmup)
-## Chain 3: Iteration:  600 / 2000 [ 30%]  (Warmup)
-## Chain 3: Iteration:  800 / 2000 [ 40%]  (Warmup)
-## Chain 3: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-## Chain 3: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-## Chain 3: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-## Chain 3: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-## Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-## Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-## Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
-## Chain 3: 
-## Chain 3:  Elapsed Time: 2.563 seconds (Warm-up)
-## Chain 3:                2.356 seconds (Sampling)
-## Chain 3:                4.919 seconds (Total)
-## Chain 3: 
-## 
-## SAMPLING FOR MODEL &#39;count&#39; NOW (CHAIN 4).
-## Chain 4: 
-## Chain 4: Gradient evaluation took 0 seconds
-## Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0 seconds.
-## Chain 4: Adjust your expectations accordingly!
-## Chain 4: 
-## Chain 4: 
-## Chain 4: Iteration:    1 / 2000 [  0%]  (Warmup)
-## Chain 4: Iteration:  200 / 2000 [ 10%]  (Warmup)
-## Chain 4: Iteration:  400 / 2000 [ 20%]  (Warmup)
-## Chain 4: Iteration:  600 / 2000 [ 30%]  (Warmup)
-## Chain 4: Iteration:  800 / 2000 [ 40%]  (Warmup)
-## Chain 4: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-## Chain 4: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-## Chain 4: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-## Chain 4: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-## Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-## Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-## Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
-## Chain 4: 
-## Chain 4:  Elapsed Time: 2.68 seconds (Warm-up)
-## Chain 4:                2.286 seconds (Sampling)
-## Chain 4:                4.966 seconds (Total)
-## Chain 4:</code></pre>
 <p>Before you look at the summary of the model, be sure to have a look
 at the regression diagnostics for the count model. Does it appear that
 you have violated the assumptions underlying the model that you have
@@ -622,47 +510,32 @@ fit? Think about why or why not. This is not a homework question, it is
 doing the analysis the right way.</p>
 <p>Now that you have looked at the regression diagnostics, take a look
 at the model summary.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the summary of the model</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the summary of the model</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
-## Model Info:
-##  function:     stan_glm
-##  family:       neg_binomial_2 [log]
-##  formula:      number ~ year + sex
-##  algorithm:    sampling
-##  sample:       4000 (posterior sample size)
-##  priors:       see help(&#39;prior_summary&#39;)
-##  observations: 378
-##  predictors:   3
+## Call:
+## glm(formula = number ~ year + sex, family = negative.binomial(theta = 1), 
+##     data = africa)
 ## 
-## Estimates:
-##                         mean   sd   10%
-## (Intercept)           35.9    6.2 27.9 
-## year                   0.0    0.0  0.0 
-## sexMale                0.1    0.0  0.1 
-## reciprocal_dispersion  7.7    0.8  6.8 
-##                         50%   90%
-## (Intercept)           35.8  43.9 
-## year                   0.0   0.0 
-## sexMale                0.1   0.2 
-## reciprocal_dispersion  7.7   8.7 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -1.41262  -0.26729  -0.08145   0.25462   0.93405  
 ## 
-## Fit Diagnostics:
-##            mean   sd   10%   50%   90%
-## mean_PPD 20.7    0.6 19.9  20.7  21.6 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 36.269089   6.045822   5.999 4.68e-09 ***
+## year        -0.016632   0.003018  -5.511 6.65e-08 ***
+## sexMale      0.142461   0.041978   3.394 0.000763 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## The mean_ppd is the sample average posterior predictive distribution of the outcome variable (for details see help(&#39;summary.stanreg&#39;)).
+## (Dispersion parameter for Negative Binomial(1) family taken to be 0.1587279)
 ## 
-## MCMC diagnostics
-##                       mcse Rhat n_eff
-## (Intercept)           0.1  1.0  4581 
-## year                  0.0  1.0  4580 
-## sexMale               0.0  1.0  4139 
-## reciprocal_dispersion 0.0  1.0  4206 
-## mean_PPD              0.0  1.0  4475 
-## log-posterior         0.0  1.0  1780 
+##     Null deviance: 72.861  on 377  degrees of freedom
+## Residual deviance: 66.292  on 375  degrees of freedom
+## AIC: 3065.2
 ## 
-## For each parameter, mcse is Monte Carlo standard error, n_eff is a crude measure of effective sample size, and Rhat is the potential scale reduction factor on split chains (at convergence Rhat=1).</code></pre>
+## Number of Fisher Scoring iterations: 4</code></pre>
 <p>You’ll note that we have included both categorical and numerical
 explanatory variables in this model. This makes the interpretation of
 the model slightly more complicated than some of the simpler models we
@@ -689,17 +562,15 @@ reasonable value of <code>year</code>. In most cases, unless you are
 predicting across the range of years, using the mean is fine (although
 not ideal if it is significant!):</p>
 <p>Here is an example of how to predict the mean value for females from
-the output of the <code>glm()</code> fit above. The process is identical
-for the estimates from <code>stan_glm()</code> although your estimates
-will be slightly different.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict mean values of female</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>female <span class="ot">&lt;-</span> <span class="fl">36.269089</span> <span class="sc">-</span> <span class="fl">0.016632</span> <span class="sc">*</span> <span class="fu">mean</span>(africa<span class="sc">$</span>year)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>female</span></code></pre></div>
+the output of the <code>glm()</code> fit above.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict mean values of female</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>female <span class="ot">&lt;-</span> <span class="fl">36.269089</span> <span class="sc">-</span> <span class="fl">0.016632</span> <span class="sc">*</span> <span class="fu">mean</span>(africa<span class="sc">$</span>year)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>female</span></code></pre></div>
 <pre><code>## [1] 2.950881</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, we need to use the inverse of</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the link function to get our prediction.</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Since the link function was &#39;log&#39;, we use:</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(female)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, we need to use the inverse of</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the link function to get our prediction.</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Since the link function was &#39;log&#39;, we use:</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(female)</span></code></pre></div>
 <pre><code>## [1] 19.12279</code></pre>
 <p>We see that the mean number of females per 100 in the African region
 that were underweight during the time period from 1986 through 2015 was
@@ -726,51 +597,36 @@ Defend your answer.</p>
 <p>Now, we will take a step back and start working with the entire data
 set. Let’s take another quick look at it just to refresh our
 memories.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the first 10 rows of data</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(uw, <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>##    year region                     country
-## 1  1986 Africa                     Senegal
-## 2  1987 Africa                        Mali
-## 3  1987 Africa                     Burundi
-## 4  1988 Africa                        Togo
-## 5  1988 Africa                    Zimbabwe
-## 6  1988 Africa                      Uganda
-## 7  1988 Africa                       Ghana
-## 8  1990 Africa                     Nigeria
-## 9  1990 Africa                  Mauritania
-## 10 1991 Africa United Republic of Tanzania
-##       sex number
-## 1  Female     15
-## 2  Female     27
-## 3  Female     27
-## 4  Female     19
-## 5  Female      7
-## 6  Female     19
-## 7  Female     23
-## 8  Female     33
-## 9  Female     42
-## 10 Female     23</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s find out how many unique regions we have in the data set</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(uw<span class="sc">$</span>region)</span></code></pre></div>
-<pre><code>## [1] &quot;Africa&quot;               
-## [2] &quot;Americas&quot;             
-## [3] &quot;Eastern Mediterranean&quot;
-## [4] &quot;Europe&quot;               
-## [5] &quot;South-East Asia&quot;      
-## [6] &quot;Western Pacific&quot;</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the first 10 rows of data</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(uw, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>##    year region                     country    sex number
+## 1  1986 Africa                     Senegal Female     15
+## 2  1987 Africa                        Mali Female     27
+## 3  1987 Africa                     Burundi Female     27
+## 4  1988 Africa                        Togo Female     19
+## 5  1988 Africa                    Zimbabwe Female      7
+## 6  1988 Africa                      Uganda Female     19
+## 7  1988 Africa                       Ghana Female     23
+## 8  1990 Africa                     Nigeria Female     33
+## 9  1990 Africa                  Mauritania Female     42
+## 10 1991 Africa United Republic of Tanzania Female     23</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s find out how many unique regions we have in the data set</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(uw<span class="sc">$</span>region)</span></code></pre></div>
+<pre><code>## [1] &quot;Africa&quot;                &quot;Americas&quot;              &quot;Eastern Mediterranean&quot;
+## [4] &quot;Europe&quot;                &quot;South-East Asia&quot;       &quot;Western Pacific&quot;</code></pre>
 <p>Okay, so now instead of looking at just one <code>region</code> from
 the data set, we will look at all six to see if there are differences
 between regions. Leave us have another exploratory look at the data:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(uw, <span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> number)) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> .<span class="dv">25</span>) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Region&quot;</span>) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Number&quot;</span>) <span class="sc">+</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="hw09_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(uw, <span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> number)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">width =</span> .<span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Region&quot;</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Number&quot;</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="dv">3</span>),</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="hw09_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>It’s pretty obvious here that no matter which way we slice it, these
 are decidedly <em>not</em> coming from a Poisson distribution. So, what
 do we do? This is GLM! We just need to use a different error
@@ -779,139 +635,31 @@ working with a negative binomial error structure.</p>
 <p>Start by fitting a negative binomial regression model to the data
 that tests the effect of <code>region</code> (x) on <code>number</code>
 (y). This one is essentially an ANOVA model, but with counts and a
-different sampling distribution that we can fit with <code>glm()</code>
-or <code>stan_glm()</code>!</p>
+different sampling distribution that we can fit with
+<code>glm()</code>.</p>
 <p>Here is an example fit with the <code>glm()</code> function:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>nb_mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> number <span class="sc">~</span> region,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> uw,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="st">&quot;negative.binomial&quot;</span>(<span class="at">theta =</span> <span class="dv">1</span>)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p>Here is an example with <code>stan_glm()</code>:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nb_mod <span class="ot">&lt;-</span> <span class="fu">stan_glm</span>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> number <span class="sc">~</span> region,</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> uw,</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">neg_binomial_2</span>()</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## 
-## SAMPLING FOR MODEL &#39;count&#39; NOW (CHAIN 1).
-## Chain 1: 
-## Chain 1: Gradient evaluation took 0.001 seconds
-## Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.
-## Chain 1: Adjust your expectations accordingly!
-## Chain 1: 
-## Chain 1: 
-## Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
-## Chain 1: Iteration:  200 / 2000 [ 10%]  (Warmup)
-## Chain 1: Iteration:  400 / 2000 [ 20%]  (Warmup)
-## Chain 1: Iteration:  600 / 2000 [ 30%]  (Warmup)
-## Chain 1: Iteration:  800 / 2000 [ 40%]  (Warmup)
-## Chain 1: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-## Chain 1: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-## Chain 1: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-## Chain 1: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-## Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-## Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-## Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
-## Chain 1: 
-## Chain 1:  Elapsed Time: 7.824 seconds (Warm-up)
-## Chain 1:                7.099 seconds (Sampling)
-## Chain 1:                14.923 seconds (Total)
-## Chain 1: 
-## 
-## SAMPLING FOR MODEL &#39;count&#39; NOW (CHAIN 2).
-## Chain 2: 
-## Chain 2: Gradient evaluation took 0.001 seconds
-## Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.
-## Chain 2: Adjust your expectations accordingly!
-## Chain 2: 
-## Chain 2: 
-## Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
-## Chain 2: Iteration:  200 / 2000 [ 10%]  (Warmup)
-## Chain 2: Iteration:  400 / 2000 [ 20%]  (Warmup)
-## Chain 2: Iteration:  600 / 2000 [ 30%]  (Warmup)
-## Chain 2: Iteration:  800 / 2000 [ 40%]  (Warmup)
-## Chain 2: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-## Chain 2: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-## Chain 2: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-## Chain 2: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-## Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-## Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-## Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
-## Chain 2: 
-## Chain 2:  Elapsed Time: 8.456 seconds (Warm-up)
-## Chain 2:                7.95 seconds (Sampling)
-## Chain 2:                16.406 seconds (Total)
-## Chain 2: 
-## 
-## SAMPLING FOR MODEL &#39;count&#39; NOW (CHAIN 3).
-## Chain 3: 
-## Chain 3: Gradient evaluation took 0.001 seconds
-## Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.
-## Chain 3: Adjust your expectations accordingly!
-## Chain 3: 
-## Chain 3: 
-## Chain 3: Iteration:    1 / 2000 [  0%]  (Warmup)
-## Chain 3: Iteration:  200 / 2000 [ 10%]  (Warmup)
-## Chain 3: Iteration:  400 / 2000 [ 20%]  (Warmup)
-## Chain 3: Iteration:  600 / 2000 [ 30%]  (Warmup)
-## Chain 3: Iteration:  800 / 2000 [ 40%]  (Warmup)
-## Chain 3: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-## Chain 3: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-## Chain 3: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-## Chain 3: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-## Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-## Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-## Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
-## Chain 3: 
-## Chain 3:  Elapsed Time: 7.63 seconds (Warm-up)
-## Chain 3:                8.218 seconds (Sampling)
-## Chain 3:                15.848 seconds (Total)
-## Chain 3: 
-## 
-## SAMPLING FOR MODEL &#39;count&#39; NOW (CHAIN 4).
-## Chain 4: 
-## Chain 4: Gradient evaluation took 0.001 seconds
-## Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 10 seconds.
-## Chain 4: Adjust your expectations accordingly!
-## Chain 4: 
-## Chain 4: 
-## Chain 4: Iteration:    1 / 2000 [  0%]  (Warmup)
-## Chain 4: Iteration:  200 / 2000 [ 10%]  (Warmup)
-## Chain 4: Iteration:  400 / 2000 [ 20%]  (Warmup)
-## Chain 4: Iteration:  600 / 2000 [ 30%]  (Warmup)
-## Chain 4: Iteration:  800 / 2000 [ 40%]  (Warmup)
-## Chain 4: Iteration: 1000 / 2000 [ 50%]  (Warmup)
-## Chain 4: Iteration: 1001 / 2000 [ 50%]  (Sampling)
-## Chain 4: Iteration: 1200 / 2000 [ 60%]  (Sampling)
-## Chain 4: Iteration: 1400 / 2000 [ 70%]  (Sampling)
-## Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
-## Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
-## Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
-## Chain 4: 
-## Chain 4:  Elapsed Time: 8.046 seconds (Warm-up)
-## Chain 4:                7.346 seconds (Sampling)
-## Chain 4:                15.392 seconds (Total)
-## Chain 4:</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>nb_mod <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> number <span class="sc">~</span> region,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> uw,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="st">&quot;negative.binomial&quot;</span>(<span class="at">theta =</span> <span class="dv">1</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Plot the residual diagnostics for this model following the approach
 in <a href="https://danstich.github.io/worst-r/13-3-negbin.html">Chapter
-13.3</a> or <a
-href="https://danstich.github.io/worst-r/18-3-negbin-18.html">Chapter
-18.3</a> of the textbook. Here is an example of what your plotting code
+13.3</a> of the textbook. Here is an example of what your plotting code
 should look like if you’ve followed one of those approaches:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the residuals - will work the same either way!</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>nb_mod_resids <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  uw, </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">.fitted =</span> nb_mod<span class="sc">$</span>fitted.values, </span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">.resid =</span> nb_mod<span class="sc">$</span>residuals)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot residuals by Region</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nb_mod_resids, <span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> .resid, <span class="at">fill =</span> region)) <span class="sc">+</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>, <span class="at">width =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> region), <span class="at">width =</span> .<span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Fitted values&quot;</span>) <span class="sc">+</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(epsilon)))</span></code></pre></div>
-<p><img src="hw09_files/figure-html/unnamed-chunk-15-1.png" width="768" /></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the residuals - will work the same either way!</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>nb_mod_resids <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  uw, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">.fitted =</span> nb_mod<span class="sc">$</span>fitted.values, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">.resid =</span> nb_mod<span class="sc">$</span>residuals)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot residuals by Region</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nb_mod_resids, <span class="fu">aes</span>(<span class="at">x =</span> region, <span class="at">y =</span> .resid, <span class="at">fill =</span> region)) <span class="sc">+</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>, <span class="at">width =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> region), <span class="at">width =</span> .<span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Fitted values&quot;</span>) <span class="sc">+</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">paste</span>(epsilon)))</span></code></pre></div>
+<p><img src="hw09_files/figure-html/unnamed-chunk-13-1.png" width="768" /></p>
 <p><strong>Question 3</strong>. Based on the residual diagnostics, does
 it look like we are in obvious violations of any of our assumptions?</p>
 <p>Now that we have done some model validation, let’s have a look at the
@@ -920,14 +668,9 @@ actual results of our model.</p>
 <code>number</code> using the <code>Anova()</code> function from the
 <code>car</code> package if you used the <code>glm()</code>
 approach:</p>
-<p>If you used <code>stan_glm()</code> to fit the model, remember that
-you’ll want to start by looking at the coefficients. To determine
-whether any of the regions differ significantly from the intercept:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nb_mod)</span></code></pre></div>
-<p><img src="hw09_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<p>In either case, we should conclude that there was there a significant
-effect of <code>region</code> on the number of individuals per 100 that
-were underweight.</p>
+<p>We should conclude that there was there a significant effect of
+<code>region</code> on the number of individuals per 100 that were
+underweight.</p>
 <p>Now, predict the mean number of individuals that were underweight per
 100 for each of the regions in this study using the approach
 demonstrated in <a
@@ -958,15 +701,10 @@ the <strong>additive</strong> effects of <code>region</code> and
 <code>year</code> (x variables) on <code>number</code> (y). In the
 second model, include the <strong>interaction</strong> effect between
 <code>region</code> and <code>year</code> on <code>number</code>.</p>
-<p>If you fit your models using MLE with the <code>glm()</code>
-function, use the <code>AIC()</code> function in base R or the
-<code>aictab()</code> function from <code>AICcmodavg</code> to get the
-AIC score for each of the two models you have created and compare them
-to determine whether one of these is “significantly” better than the
-other. If you used <code>stan_glm()</code> function to fit the models
-with Bayesian estimation, you can compare the models using LOO-IC or
-elpd<sub>loo</sub> from the <code>loo</code> package as we did in
-Chapters 17 and 18.</p>
+<p>Use the <code>aictab()</code> function from <code>AICcmodavg</code>
+to get the AIC score for each of the two models you have created and
+compare them to determine whether one of these is “significantly” better
+than the other.</p>
 <p>Plot the predictions of the best model.</p>
 <p><strong>Question 5</strong>. According to the AIC scores that you
 have extracted, is there unequivocal evidence to indicate that one of
